@@ -174,3 +174,31 @@
         }
     ]
 }
+
+
+
+{
+  "Version": "2012-10-17",
+  "Id": "RestrictBucketToIAMUsersOnly",
+  "Statement": [
+    {
+      "Sid": "DenyBuckettech",
+      "Effect": "Deny",
+      "Principal":  {
+			"AWS": "arn:aws:iam::129718466065:user/gunjan_tech"
+		},
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::tech-test.techaxis.com/*",
+        "arn:aws:s3:::tech-test.techaxis.com"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::129718466065:user/gunjan"
+        }
+      }
+    }
+  ]
+}
+
+

@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Retrieve server hostname
+sudo apt update
+sudo apt install apache2
+
 HOSTNAME=$(hostname)
 
 # Retrieve additional details (e.g., OS information and uptime)

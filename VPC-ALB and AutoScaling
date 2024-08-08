@@ -1,0 +1,24 @@
+ALB()
+
+1. Create a test-VPC 172.16.0.0/16
+2. Create Internet-Gateway-igw-tech
+3. Attach the igw-tech to the newly created VPC.
+4. Create a Public Subnet1 to AZ1 172.16.1.0/24
+5. Create a Public Subnet2 to AZ2 172.16.2.0/24
+6. Create a Route-Table for test-VPC 
+7. In Subnet Association, associate Public Subnet1 and Public Subnet2, which we created above.
+8. Edit Route adding 0.0.0.0/0 to Internet-Gateway-igw-tech.
+9. Create EC1 to Public Subnet1 to AZ1 172.16.1.0/24 of above test-VPC 172.16.0.0/1
+10. Create EC2 to Public Subnet2 to AZ2 172.16.2.0/24 of above test-VPC 172.16.0.0/16.
+
+11. Create Target Group of Type Instances
+12. Select the VPC test-VPC 172.16.0.0/16.
+13. Default Next and Regiter both EC2 residing to that VPC on port 80 and finally Include them.
+
+14. Go to LOAD BALANCING In EC2 Dashboard
+15. Internet facing, IPV4. Select test-VPC 172.16.0.0/16 and select both subnets Subnet1 and Subnet2.
+16. Attach the Security Group for the port 80.
+17. Finally on Listners and Routing Select the Target Group we created above.
+18. Copy The DNS Name of elb created and finally verify.
+
+AUTOSCALING ()

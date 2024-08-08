@@ -29,4 +29,5 @@ ALL THE STEP ARE SAME TILL ALB/ELB
 22. Select the target group which was created above.
 23. Turn ON Health Checks 20 sec
 24. Capacity Min, Max and Desired
-25. Scaling policy 
+25. Scaling policy as desired
+26. FINISHED

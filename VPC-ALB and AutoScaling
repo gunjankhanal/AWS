@@ -22,3 +22,11 @@ ALB()
 18. Copy The DNS Name of elb created and finally verify.
 
 AUTOSCALING ()
+ALL THE STEP ARE SAME TILL ALB/ELB
+19. Create AutoScaling, Selecting the Launch Template 
+20. Select the test-VPC 172.16.0.0/16 for it.
+21. Also we need to point the ALB(existing) for this AUTOSCALING GROUP.
+22. Select the target group which was created above.
+23. Turn ON Health Checks 20 sec
+24. Capacity Min, Max and Desired
+25. Scaling policy 

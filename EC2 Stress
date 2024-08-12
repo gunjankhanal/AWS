@@ -1,0 +1,3 @@
+sudo apt install --install-suggests s-tui
+
+s-tui

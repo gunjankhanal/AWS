@@ -1,3 +1,19 @@
+Login to ECR (replace and with your actual values)
+$ aws ecr get-login-password --region | docker login --username AWS --password-stdin .dkr.ecr..amazonaws.com
+
+Build the Docker image (replace with your ECR repository name)
+$ docker build -t .dkr.ecr..amazonaws.com/:latest .
+
+Push the Docker image to ECR (replace with your ECR repository name)
+$ docker push .dkr.ecr..amazonaws.com/:latest
+
+
+
+
+
+
+
+
 AWS ECS Deep Dive
 Introduction
 In the ever-evolving world of cloud computing, containerization has emerged as a pivotal technology, enabling developers to package their applications along with all dependencies into a single, portable unit. Amazon Elastic Container Service (ECS), a fully managed container orchestration service from AWS, simplifies the deployment, management, and scaling of containerized applications.

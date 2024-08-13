@@ -1,5 +1,5 @@
 Login to ECR (replace and with your actual values)
-$ aws ecr get-login-password --region | docker login --username AWS --password-stdin .dkr.ecr..amazonaws.com
+$ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin .dkr.ecr..amazonaws.com
 
 Build the Docker image (replace with your ECR repository name)
 $ docker build -t .dkr.ecr..amazonaws.com/:latest .

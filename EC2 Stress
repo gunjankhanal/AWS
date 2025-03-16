@@ -1,3 +1,5 @@
 sudo apt install --install-suggests s-tui
 
 s-tui
+
+sudo apt install stress >>>> stress --cpu 8 --timeout 300s

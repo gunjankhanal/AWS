@@ -1,3 +1,8 @@
+#!/bin/bash
+
+sudo apt -y update
+sudo  apt-y install wget
+
 wget https://github.com/prometheus/prometheus/releases/download/v3.3.0-rc.0/prometheus-3.3.0-rc.0.linux-amd64.tar.gz
 tar zxvf prometheus-3.3.0-rc.0.linux-amd64.tar.gz
 cd prometheus-3.3.0-rc.0.linux-amd64/

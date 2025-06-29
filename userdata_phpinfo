@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        strong {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Server Information</h1>
+        <?php
+    // Get server information
+    $hostname = gethostname();
+    $osInfo = php_uname();
+    $uptime = shell_exec('uptime -p');
+    $currentDate = date('D M j H:i:s T Y');
+    ?>
+
+    <p><strong>Hostname:</strong> <?php echo htmlspecialchars($hostname); ?></p></br>
+    <p><strong>OS Information:</strong> <?php echo htmlspecialchars($osInfo); ?></p></br>
+    <p><strong>Uptime:</strong> <?php echo htmlspecialchars($uptime); ?></p></br>
+    <p><strong>Date:</strong> <?php echo htmlspecialchars($currentDate); ?></p></br>
+    </div>
+</body>
+</html>

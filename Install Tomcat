@@ -1,6 +1,6 @@
 #Update and Install Java
 sudo apt update && sudo apt upgrade -y
-sudo apt install openjdk-21-jdk -y
+sudo apt install openjdk-17-jdk -y
 java -version
 
 #Add User and Group Tomcat

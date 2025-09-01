@@ -54,7 +54,7 @@ systemctl status tomcat
 sudo ufw allow 8080
 
 Edit
-vi /opt/tomcat/conf/tomcat-users.xml
+vi /opt/tomcat/conf/tomcat-users.xml (At the End)
 -----
 <role rolename="manager-gui"/>
 <role rolename="admin-gui"/>

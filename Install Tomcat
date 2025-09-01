@@ -11,7 +11,7 @@ sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 cd /tmp
 wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.44/bin/apache-tomcat-10.1.44.tar.gz
 sudo mkdir /opt/tomcat
-sudo tar -xvzf apache-tomcat-10.1.28.tar.gz -C /opt/tomcat --strip-components=1
+sudo tar -xvzf apache-tomcat-10.1.44.tar.gz -C /opt/tomcat --strip-components=1
 
 cd /opt/tomcat
 sudo chgrp -R tomcat /opt/tomcat

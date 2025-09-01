@@ -54,3 +54,18 @@ sudo ufw allow 8080
 
 Edit
 vi /opt/tomcat/conf/tomcat-users.xml
+-----
+<role rolename="manager-gui"/>
+<role rolename="admin-gui"/>
+<role rolename="manager-script"/>
+<user username="admin" password="admin@123" roles="manager-gui,admin-gui,manager-script"/>
+--------
+cd /opt/tomcat/webapps/manager/META-INF
+Allow all access
+ <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow=".*" />
+   -->
+cd /opt/tomcat/webapps/host-manager/META-INF
+          allow=".*" />
+
+

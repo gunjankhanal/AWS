@@ -1,14 +1,15 @@
-#Install Tomcat
+#Update and Install Java
 sudo apt update && sudo apt upgrade -y
 sudo apt install openjdk-21-jdk -y
 java -version
 
+#Add User and Group Tomcat
 sudo groupadd tomcat
 sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
+#Download and Unzip tha package
 cd /tmp
 wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.28/bin/apache-tomcat-10.1.28.tar.gz
-
 sudo mkdir /opt/tomcat
 sudo tar -xvzf apache-tomcat-10.1.28.tar.gz -C /opt/tomcat --strip-components=1
 

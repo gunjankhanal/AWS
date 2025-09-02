@@ -73,7 +73,6 @@ cd /opt/tomcat/webapps/host-manager/META-INF
 
 #!/bin/bash
 set -euxo pipefail
-export DEBIAN_FRONTEND=noninteractive
 
 # ----- System update + Java -----
 apt-get update -y

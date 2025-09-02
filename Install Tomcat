@@ -70,3 +70,76 @@ cd /opt/tomcat/webapps/host-manager/META-INF
           allow=".*" />
 
 
+
+#!/bin/bash
+set -euxo pipefail
+export DEBIAN_FRONTEND=noninteractive
+
+# ----- System update + Java -----
+apt-get update -y
+apt-get upgrade -y
+apt-get install -y openjdk-17-jdk wget
+
+# ----- Create tomcat user/group and install dir -----
+id -u tomcat >/dev/null 2>&1 || groupadd tomcat
+id -u tomcat >/dev/null 2>&1 || useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+
+mkdir -p /opt/tomcat
+
+# ----- Download + extract Tomcat -----
+TOMCAT_VER="10.1.44"
+TOMCAT_BASE="apache-tomcat-${TOMCAT_VER}"
+TOMCAT_TARBALL="${TOMCAT_BASE}.tar.gz"
+cd /tmp
+# Use Apache archive for stable URLs
+wget -q "https://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VER}/bin/${TOMCAT_TARBALL}"
+tar -xzf "${TOMCAT_TARBALL}" -C /opt/tomcat --strip-components=1
+rm -f "/tmp/${TOMCAT_TARBALL}"
+
+# ----- Permissions -----
+cd /opt/tomcat
+chown -R tomcat:tomcat /opt/tomcat
+chmod -R u+x bin/*.sh  || true   # ensure scripts are executable
+
+# Optional: tighten config visibility
+chmod -R g+r conf
+chmod g+x conf
+
+# ----- systemd service -----
+cat >/etc/systemd/system/tomcat.service <<'EOF'
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment=CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC
+Environment=JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom
+
+# Use catalina.sh for systemd control
+ExecStart=/opt/tomcat/bin/catalina.sh start
+ExecStop=/opt/tomcat/bin/catalina.sh stop
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# ----- Start + enable -----
+systemctl daemon-reload
+systemctl enable --now tomcat
+
+# ----- Notes -----
+# Open port 8080 in the EC2 Security Group (recommended). No ufw on EC2.
+
+
+

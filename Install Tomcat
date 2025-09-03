@@ -71,6 +71,20 @@ cd /opt/tomcat/webapps/host-manager/META-INF
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #!/bin/bash
 set -euxo pipefail
 

@@ -1,0 +1,17 @@
+# Update package list
+sudo apt update
+
+# Install dependencies
+sudo apt install curl -y
+
+# Download Cloudflare’s GPG key
+curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+
+# Add the repository
+echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared jammy main" | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+# Update and install
+sudo apt update
+sudo apt install cloudflared -y
+============================================
+cloudflared tunnel --url http://localhost:8080
